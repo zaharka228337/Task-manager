@@ -11,11 +11,15 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->text('description');
+            $table->boolean('status');
+            $table->date('date_start')->default(now());
+            $table->date('date_deadline');
         });
     }
 
@@ -24,7 +28,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tasks');
     }
